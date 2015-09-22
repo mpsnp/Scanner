@@ -39,6 +39,8 @@ private slots:
 
     void on_actionExport_triggered();
 
+    void on_imageClicked(int x, int y);
+
 private:
     Ui::MainWindow *ui;
     double threshold;

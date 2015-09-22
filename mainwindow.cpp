@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->labelForImage, SIGNAL(lineBetweenTwoPoints(int,int,int,int)), this, SLOT(on_lineBetweenTwoPoints(int,int,int,int)));
     connect(ui->labelForImage, SIGNAL(prelineBetweenTwoPoints(int,int,int,int)), this, SLOT(on_prelineBetweenTwoPoints(int,int,int,int)));
+    connect(ui->labelForImage, SIGNAL(clicked(int,int)), this, SLOT(on_imageClicked(int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -88,7 +89,7 @@ void MainWindow::recalculate()
 {
     if (!sourceImage.empty())
     {
-        auto result = solver.calculatePolynomOnImage(sourceImage, polynomDegree + 1, threshold);
+        result = solver.calculatePolynomOnImage(sourceImage, polynomDegree + 1, threshold);
 
         displayImage();
 
@@ -102,6 +103,7 @@ void MainWindow::recalculate()
 
 void MainWindow::on_actionOpen_triggered()
 {
+    result.clear();
     QString fileName = QFileDialog::getOpenFileName(this, "Open image for processing", "", "Images (*.png *.xpm *.jpg)");
     sourceImage = cv::imread(fileName.toStdString());
     recalculate();
@@ -124,6 +126,11 @@ void MainWindow::on_actionSwitch_displayed_image_triggered()
         break;
     }
     displayImage();
+}
+
+void MainWindow::on_imageClicked(int x, int y)
+{
+    solver.setIdentity(cv::Point(x, y), 1, 10);
 }
 
 void MainWindow::on_actionExport_triggered()
