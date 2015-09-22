@@ -3,6 +3,7 @@
 #include <qfiledialog.h>
 #include "GraphSolver.h"
 #include <string>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -123,4 +124,22 @@ void MainWindow::on_actionSwitch_displayed_image_triggered()
         break;
     }
     displayImage();
+}
+
+void MainWindow::on_actionExport_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Export results", "results.csv", "CSV files (.csv);;Zip files (.zip, *.7z)", 0, 0);
+    QFile data(filename);
+
+    if(data.open(QFile::WriteOnly | QFile::Truncate))
+    {
+        QTextStream output(&data);
+
+        for (auto param : result)
+        {
+            output << param << ',';
+        }
+    }
+
+    data.close();
 }

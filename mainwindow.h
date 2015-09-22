@@ -37,6 +37,8 @@ private slots:
     void on_prelineBetweenTwoPoints(int x1, int y1, int x2, int y2);
     void on_lineBetweenTwoPoints(int x1, int y1, int x2, int y2);
 
+    void on_actionExport_triggered();
+
 private:
     Ui::MainWindow *ui;
     double threshold;
@@ -45,6 +47,7 @@ private:
     cv::Mat sourceImage;
     cv::Mat maskPreview;
     ImageType displayedImage;
+    std::vector<double> result;
 
     void recalculate();
     void displayImage();
