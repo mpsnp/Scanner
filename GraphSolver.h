@@ -67,6 +67,13 @@ public:
      * @param AImage image on which to draw
      */
     void drawDebugDataOnImage(cv::Mat&);
+
+    /**
+     * Draws graphic on provided image.
+     * @param AImage image on which to draw
+     * @param AColor graphic color.
+     */
+    void drawGraphicOnImage(cv::Mat&, cv::Scalar);
 };
 
 #endif /* defined(__GraphScanner__GraphSolver__) */

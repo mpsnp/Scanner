@@ -353,6 +353,11 @@ void GraphSolver::drawDebugDataOnImage(cv::Mat &AImage)
     
     fillPoly(AImage, _graphicPoints, Scalar(0,0,255));
 
+    drawGraphicOnImage(AImage, Scalar(255, 0, 255));
+}
+
+void GraphSolver::drawGraphicOnImage(Mat &AImage, Scalar AColor)
+{
     Vec3d oldVec;
     const double xmin = -10;
     const double xmax = 10;
@@ -372,7 +377,7 @@ void GraphSolver::drawDebugDataOnImage(cv::Mat &AImage)
             oldVec = vec;
         }
 
-        line(AImage, Point2d(oldVec(0), oldVec(1)), Point2d(vec(0), vec(1)), Scalar(0, 255, 0), 1);
+        line(AImage, Point2d(oldVec(0), oldVec(1)), Point2d(vec(0), vec(1)), AColor, 1);
         oldVec = vec;
     }
 }

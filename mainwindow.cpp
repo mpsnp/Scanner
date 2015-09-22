@@ -68,6 +68,7 @@ void MainWindow::displayImage()
         break;
     case IT_THRESHOLDED:
         solver.thresholdedImage.copyTo(dst);
+        solver.drawGraphicOnImage(dst, cv::Scalar(0));
         image = QImage(dst.data, dst.cols, dst.rows, dst.step, QImage::Format_Indexed8);
         break;
     case IT_ANALYZED:
@@ -79,6 +80,7 @@ void MainWindow::displayImage()
         {
             solver.masked.copyTo(dst);
         }
+        solver.drawGraphicOnImage(dst, cv::Scalar(255));
         image = QImage(dst.data, dst.cols, dst.rows, dst.step, QImage::Format_Indexed8);
         break;
     }
