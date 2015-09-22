@@ -27,6 +27,8 @@ void ImageLabel::mouseReleaseEvent(QMouseEvent *ev)
 {
     dragging = false;
     endPoint = ev->pos();
+    if (endPoint == startPoint)
+        emit clicked(endPoint.x(), endPoint.y());
     emit lineBetweenTwoPoints(startPoint.x(), startPoint.y(), endPoint.x(), endPoint.y());
 }
 
