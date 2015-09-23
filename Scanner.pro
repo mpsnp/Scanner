@@ -12,8 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Scanner
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -stdlib=libc++
-LIBS += -stdlib=libc++
+QMAKE_CXXFLAGS += -std=c++11
 
 win32 {
     INCLUDEPATH += C:\Users\kir_g\Downloads\opencv\build\include
@@ -22,6 +21,8 @@ win32 {
 }
 
 unix {
+    QMAKE_CXXFLAGS += -stdlib=libc++
+    LIBS += -stdlib=libc++
     INCLUDEPATH += /usr/local/include
     LIBS += -L/usr/local/lib
     LIBS += -lopencv_core -lopencv_imgproc -lopencv_imgcodecs
